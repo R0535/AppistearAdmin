@@ -1,12 +1,21 @@
 {%extends 'base.html'%}
+{%import 'macros.html' as macros %}
+{% block title %}
+    {{super()}}
+Bienvenido
+{% endblock %}
 
-{% if user_ip %}
-<h1>Hello World. Tu IP es {{user_ip}}</h1>
-{%else%}
-<h1>Where are you from stranger? <a href = "{{url_for('index')}}">Go back home</a></h1>
-{%endif%}
-<ul>
-    {%for todo in todos%}
-    <li>todo</li>
-    {%endfor%}
-</ul>
+
+{%block content%}
+    {{super()}}
+    {% if user_ip %}
+        <h1>Hello World. Your IP is: {{user_ip}}</h1>
+        {%else%}
+        <h1>Where are you from stranger? <a href = "{{url_for('index')}}">Go back home</a></h1>
+        {%endif%}
+        <ul>
+            {%for todo in todos%}
+                {{macros.render_todo(todo)}}
+            {%endfor%}
+        </ul>
+{% endblock %}

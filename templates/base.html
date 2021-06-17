@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+{%extends 'bootstrap/base.html'%}
+{%block head  %}
+    {{super()}}
     <meta charset="UTF-8">
     <meta http-equiv=”Content-Language” content=”es”/>
     <meta name=”distribution” content=”global”/>
@@ -9,11 +11,17 @@
     <meta name="description" content = "Appistear. Fiesta a la medida">
     <meta name="Keywords" content="beber,drink,place,lugares,bares,morelia,bar,drinking,michoacan,centro,"/>
     <meta name="Robots" content="all"/>
-    <title>{%block title}Title | {%endblock%}</title>
-</head>
-<body>
-    <h1>
-        Hola perro
-    </h1>
-</body>
-</html>
+    <title>
+        {% block title %}Platform | {% endblock %}
+    </title>
+    <link rel='stylesheet' href="{{url_for('static',filename = 'css/main.css')}}">
+{%endblock%}
+
+{%block body%}
+    {%block navbar%}
+        {%include 'navbar.html'%}
+    {%endblock%}
+    {%block content%}
+
+    {%endblock%}
+{%endblock%}
