@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%import 'macros.html' as macros %}
+{% block title %}
+    {{super()}}
+Bienvenido
+{% endblock %}
+
+
+{%block content%}
+    {{super()}}
+    <div class = "container">
+
+        {% if username %}
+        <h1>Welcome, {{username | capitalize}}</h1>
+        <div class = "container">
+
+            <h3> Here are your tasks for today:</h3>
+            {%else%}
+            <h1>Where are you from stranger? <a href = "{{url_for('index')}}">Go back home</a></h1>
+            {%endif%}
+            <ul>
+                {%for todo in todos%}
+                {{macros.render_todo(todo)}}
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
