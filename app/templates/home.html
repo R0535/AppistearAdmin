@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
 {%import 'macros.html' as macros %}
+{%import 'bootstrap/wtf.html' as wtf %}
 {% block title %}
     {{super()}}
 Bienvenido
@@ -18,11 +19,15 @@ Bienvenido
             {%else%}
             <h1>Where are you from stranger? <a href = "{{url_for('index')}}">Go back home</a></h1>
             {%endif%}
-            <ul>
+            <ul class="list-group">
                 {%for todo in todos%}
-                {{macros.render_todo(todo)}}
+                    {{macros.render_todo(todo,delete_form,update_form)}}
                 {%endfor%}
             </ul>
         </div>
+    </div>
+    <div class = "container">
+        <h2>Submit your task here</h2>
+        {{wtf.quick_form(task_form)}}
     </div>
 {% endblock %}

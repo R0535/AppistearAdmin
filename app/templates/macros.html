@@ -1,3 +1,15 @@
-{%macro render_todo(todo)%}
-    <li>Description: {{todo}}</li>
+{%import 'bootstrap/wtf.html' as wtf %}
+{%macro render_todo(task,delete_form,update_form)%}
+    <li class="list-group-item">
+        {{task.to_dict()["label"]}}
+        {{task.to_dict()["description"]}}
+        <span class="badge">
+            {{task.to_dict()["done"]}}
+        </span> 
+        <span class="badge">
+            {{task.to_dict()["score"]}}
+        </span> 
+    </li>
+    {{ wtf.quick_form(delete_form,action = url_for("delete",task_id = task.id)) }}
+    {{ wtf.quick_form(update_form,action = url_for("update",task_id = task.id, done = task.to_dict().done)) }}
 {%endmacro%}
