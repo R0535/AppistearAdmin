@@ -1,0 +1,16 @@
+{%import 'bootstrap/wtf.html' as wtf %}
+{%macro render_card(main_color,form,header,desc)%}
+<div class = '{{main_color}} card_container'>
+        <img src="{{url_for('static',filename='images/default.jpg')}}" class = "card--image">
+        <div class="grayline"></div>
+        <div class="black_linear card--info--container">
+            <h3 class="header-card--{{main_color}}">{{header}}</h3>
+            <div class="whiteline"></div>
+            <p class='card--desc'>                {{desc}}            </p>
+            <div class='button-bottom'>
+                <input type="button" 
+                {{form.submit(class =main_color+"-to-solid btn", action = url_for("home"))}}
+            </div>
+        </div>
+</div>
+{%endmacro%}

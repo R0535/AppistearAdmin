@@ -12,8 +12,25 @@ class TaskForm(FlaskForm):
     description = StringField('Description', validators = [DataRequired()])
     submit = SubmitField('Submit')
 
-class DeleteTaskForm(FlaskForm):
-    submit = SubmitField('Borrar')
+
+#Home Buttons
+class InitialAddForm(FlaskForm):
+    submit = SubmitField('Agregar')
+
+class InitialSearchForm(FlaskForm):
+    submit = SubmitField('A Pistear!')
+
+class InitialRateForm(FlaskForm):
+    submit = SubmitField('Opinar')
+
+
+#Forms
+
+#New place
+class AddForm(FlaskForm):
+    name = StringField("¿Cómo se llama el lugar?", validators=[DataRequired()])
+    
+    submit = SubmitField('Compartir Con el Mundo')
 
 class UpdateTaskForm(FlaskForm):
     submit = SubmitField('Entregar')

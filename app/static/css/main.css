@@ -3,10 +3,162 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-color:black;
+}
 html{
     font-size: 62.5%;
     font-family:sans-serif;
+    
 }
 nav{
     font-size:1.6rem
+}
+
+/*Colors*/
+.black_linear{
+	background: linear-gradient(173deg, #000000 8%,rgba(255, 255, 255, 0) 70%);
+}
+
+.red{
+	background: linear-gradient(173deg, #F9463B 30%,rgba(255, 255, 255, 0) 90%);
+}
+.red-to-solid{
+	background: linear-gradient(to bottom, #86241E 100%,#F9473B 30%);
+    font-family: "LoraRegular";
+    color:honeydew;
+}
+
+.aqua{
+    background: linear-gradient(173deg, #19ddc6 30%,rgba(255, 255, 255, 0) 90%);
+	
+}
+.aqua-to-solid{
+	background: linear-gradient(to bottom, #0D6E62 100%,#19DDC6 30%);   
+    color:honeydew;
+    font-family: "LoraRegular";
+
+}
+
+.yellow{
+	background: linear-gradient(173deg, #F2DD1C 30%,rgba(255, 255, 255, 0) 90%);
+}
+.yellow-to-solid{
+	background: linear-gradient(to bottom, #6B610D 100%,#F2DD1C 30%);
+    color:honeydew;
+    font-family: "LoraRegular";
+}
+
+/*Cards*/
+.card_container{
+    border-radius: 56px;
+}
+.card--image{
+    border-radius: 40px 40px 0 0;
+    height: 24rem;
+    width:80%;
+    margin-top: 3rem;
+    object-fit: cover;
+}
+.card--info--container{
+    position: relative;
+    border-radius: 0 0 40px 40px;
+    height:24rem;
+    margin-bottom: 3rem;
+    width: 80%;
+    margin-left: 10%;
+}
+/*Utilities*/
+.grayline{
+    background-color: rgba(255, 255, 255, 0.226);
+    width: 80%;
+    margin-left: 10%;
+    height:.25rem;
+}
+.whiteline{
+    background-color: rgba(255, 255, 255, 0.596);
+    width: 90%;
+    height:.25rem;
+    margin-top:.1rem
+}
+/*Fonts*/
+@font-face {
+    font-family: PoppinsLightItalic;
+    src: url('../fonts/poppins/Poppins-LightItalic.ttf') ;
+    font-weight:normal; 
+}
+@font-face {
+    font-family: PoppinsBold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf') ;
+    font-weight:700; 
+}
+@font-face {
+    font-family: LoraRegular;
+    src: url('../fonts/lora/Lora-Regular.ttf') ;
+}
+.header-golden{
+    text-align: center;
+    font-size: 9.6rem;
+    font-family: "PoppinsLightItalic";
+    text-transform: uppercase;
+	background: linear-gradient(to bottom, #FFD874 50%,#FFC42E 0%, #FFCF55 30%);
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.header-card--red{
+    background: linear-gradient(to bottom, #86241E 100%,#F9473B 30%);
+    text-align: left;
+    font-size: 3.6rem;
+    font-family: "PoppinsBold";
+    text-transform: capitalize;
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    margin: 0 10px 0 10px;
+}
+.header-card--aqua{
+    background: linear-gradient(to bottom, #0D6E62 100%,#19DDC6 30%);
+    text-align: left;
+    font-size: 3.6rem;
+    font-family: "PoppinsBold";
+    text-transform: capitalize;
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    margin: 0 10px 0 10px;
+}
+.header-card--yellow{
+    background: linear-gradient(to bottom, #6B610D 100%,#F2DD1C 30%);
+    text-align: left;
+    font-size: 3.6rem;
+    font-family: "PoppinsBold";
+    text-transform: capitalize;
+    background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    margin: 0 10px 0 10px;
+}
+.card--desc{
+    color:honeydew;
+    text-align: left;
+    font-size: 1.6rem;
+    font-family: "LoraRegular";
+    text-transform: capitalize;
+    margin: 0 10px 0 10px;
+}
+.button-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*Overwrite bootstrap*/
+div.horizontal{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(min(80%,30rem),1fr));
+    grid-gap: 5.6rem;
+    grid-auto-rows: 60rem;
+    text-align: center;
 }
