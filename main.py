@@ -15,11 +15,11 @@ from app.firestore_service import get_tasks, get_user, get_proyects,create_alumn
 #Google MAPS
 import json
 from flask_googlemaps import GoogleMaps, Map
-
+from keys import GOOGLE_KEY
 
 
 app =  create_app()       #Inits the FLASK app from app capsule 
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyCg9f9msBk1DYSo_EPXGuCjYUrULhNBKdI"
+app.config['GOOGLEMAPS_KEY'] = GOOGLE_KEY
 
 #GOOGLE MAPS INFO
 GoogleMaps(app)
