@@ -1,0 +1,29 @@
+{%macro render_map(key)%}
+<div id="googleMap" class= "map"></div>
+
+<script>
+function myMap() {
+var text;
+const myLatLng = { lat: 19.701217486389595, lng: -101.19960342230519 };
+var mapProp= {
+  center:myLatLng,
+  zoom:15,
+};
+window.addEventListener('load', function () {
+    text = document.getElementById('inputText');
+    text.readOnly = true
+})
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var marker = new google.maps.Marker({position:myLatLng,map,draggable:true,title:"AAAAA"});
+marker.setMap(map);
+marker.addListener('mouseup', render_position);
+function render_position(){
+    marker_lat = marker.position.lat()
+    marker_lng = marker.position.lng()
+    text.value = marker_lat+","+marker_lng
+}
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=myMap"></script>
+{%endmacro%}

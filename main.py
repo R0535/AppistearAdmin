@@ -68,17 +68,20 @@ def home():                                                              #home m
         return redirect(url_for('add'))
     if search_form.validate_on_submit():
         flash("Nueva Cueva")
-        return redirect(url_for('home'))
+        print("AAAAAAAAAAAA")
+        return redirect(url_for('add'))
     if rate_form.validate_on_submit():
         flash("Nueva Cueva")
-        return redirect(url_for('home'))
+        print("AAAAAAAAAAAA")
+        return redirect(url_for('add'))
     return render_template('home.html',**context) #returned the response to the client. This time, with the html page
 
-@app.route('/add',methods =["GET",'POST'])
+@app.route('/add',methods = ["GET",'POST'])
 def add():
+    
     #Create a map
     map = Map(
-        identifier = "map", varname = "map",
+        identifier = "map", varname = "map",style="height:600px;width:600px;margin:0;",
         # set identifier, varname
         lat = user_location[0], lng = user_location[1], 
         # set map base to user_location
@@ -97,6 +100,7 @@ def add():
     context = {                                   #Dictionary for the HTML part
         "add_form": add_form,
         "map": map,
+        "key":GOOGLE_KEY,
     }
     return render_template('add.html',**context)
 

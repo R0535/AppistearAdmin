@@ -68,6 +68,12 @@ nav{
     width: 80%;
     margin-left: 10%;
 }
+.question--info--container{
+    position: relative;
+    border-radius: 56px;
+    height:auto;
+    padding-top: 3rem;
+}
 /*Utilities*/
 .grayline{
     background-color: rgba(255, 255, 255, 0.226);
@@ -98,7 +104,7 @@ nav{
 }
 .header-golden{
     text-align: center;
-    font-size: 9.6rem;
+    font-size: 6.4rem;
     font-family: "PoppinsLightItalic";
     text-transform: uppercase;
 	background: linear-gradient(to bottom, #FFD874 50%,#FFC42E 0%, #FFCF55 30%);
@@ -107,7 +113,7 @@ nav{
 	-webkit-text-fill-color: transparent;
 }
 .header-card--red{
-    background: linear-gradient(to bottom, #86241E 100%,#F9473B 30%);
+    background: linear-gradient(to bottom, #86241E 25%,#F9473B 100%);
     text-align: left;
     font-size: 3.6rem;
     font-family: "PoppinsBold";
@@ -118,7 +124,7 @@ nav{
     margin: 0 10px 0 10px;
 }
 .header-card--aqua{
-    background: linear-gradient(to bottom, #0D6E62 100%,#19DDC6 30%);
+    background: linear-gradient(to bottom, #0D6E62 25%,#19DDC6 100%);
     text-align: left;
     font-size: 3.6rem;
     font-family: "PoppinsBold";
@@ -129,7 +135,7 @@ nav{
     margin: 0 10px 0 10px;
 }
 .header-card--yellow{
-    background: linear-gradient(to bottom, #6B610D 100%,#F2DD1C 30%);
+    background: linear-gradient(to bottom, #6B610D 25%,#F2DD1C 100%);
     text-align: left;
     font-size: 3.6rem;
     font-family: "PoppinsBold";
@@ -139,21 +145,40 @@ nav{
 	-webkit-text-fill-color: transparent;
     margin: 0 10px 0 10px;
 }
+/*Cards*/
+.question-card{
+ padding: 3rem;
+
+}
 .card--desc{
     color:honeydew;
     text-align: left;
     font-size: 1.6rem;
     font-family: "LoraRegular";
     text-transform: capitalize;
-    margin: 0 10px 0 10px;
+    margin: 10px 10px 0 10px;
 }
+/*inputs*/
 .button-bottom{
     position: absolute;
+    margin-top: 50px;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
-
+.text-box--question{
+    background-color: #00000049;
+    border-radius: 56px;
+    padding: 5px;
+    color: whitesmoke;
+    width:90%;
+    margin: 5% 5% 50px 5%;
+}
+.map{
+    width:96%;
+    height:400px;
+    margin:40px 2% 40px 2%;
+}
 /*Overwrite bootstrap*/
 div.horizontal{
     display: grid;
@@ -162,3 +187,12 @@ div.horizontal{
     grid-auto-rows: 60rem;
     text-align: center;
 }
+div.question{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(90%,35rem), 1fr));
+    height:fit-content;
+    grid-gap: 5.6rem;
+    text-align: start; 
+    justify-items: center;
+}
+

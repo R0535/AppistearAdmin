@@ -2,7 +2,7 @@ flask
 flask-bootstrap
 flask-wtf
 flask-testing
-flask_googlemaps
+flask-googlemaps
 blinker
 firebase-admin
 flask-login

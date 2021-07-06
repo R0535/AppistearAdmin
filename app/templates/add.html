@@ -1,18 +1,11 @@
 {%extends 'base.html'%}
-{%import 'macro_card.html' as macros %}
+{%import 'macro_question_map.html' as question %}
 {%import 'bootstrap/wtf.html' as wtf %}
-{%block head%}
-    {{super()}}
-    {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419,
-    -122.1419)])}} {{map.js}}
-    <style>#map { height: 100%; width: 100%; }</style>
-    
-{% endblock %}
+
 {% block title %}
         {{super()}}
         Appistear | +
 {% endblock %}
 {%block content%}
-    {{map.js}}
-    {{map.html}}
+{{question.render_question_map(key)}}
 {% endblock %}

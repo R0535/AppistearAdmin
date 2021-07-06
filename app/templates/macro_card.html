@@ -8,8 +8,10 @@
             <div class="whiteline"></div>
             <p class='card--desc'>                {{desc}}            </p>
             <div class='button-bottom'>
-                <input type="button" onclick="{{url_for('add')}}" value="Agregar">
-                {{form.submit(class =main_color+"-to-solid btn", action = url_for("home"))}}
+                <form method="post" action="{{url_for('add')}}">
+                    {{ form.csrf_token }}<!--automathic-->
+                    {{form.submit(class = main_color+"-to-solid btn")}}
+                </form>
             </div>
         </div>
 </div>
