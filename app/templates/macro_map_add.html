@@ -1,18 +1,18 @@
-{%macro render_map(key)%}
+{%macro render_map(key,coords)%}
 <div id="googleMap" class= "map"></div>
-
 <script>
 function myMap() {
 var text;
-const myLatLng = { lat: 19.701217486389595, lng: -101.19960342230519 };
-var mapProp= {
-  center:myLatLng,
-  zoom:15,
-};
 window.addEventListener('load', function () {
     text = document.getElementById('inputText');
     text.readOnly = true
 })
+const myLatLng = { lat: parseFloat("{{coords[0]}}"), lng: parseFloat("{{coords[1]}}") };
+console.log(myLatLng)
+var mapProp= {
+  center:myLatLng,
+  zoom:15,
+};
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 var marker = new google.maps.Marker({position:myLatLng,map,draggable:true,title:"AAAAA"});
 marker.setMap(map);

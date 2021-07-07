@@ -1,58 +1,58 @@
 {
-    "questions":[
+    "create":[
         {
             "id":0,
             "header":"Agregar Nombre",
-            "text":"¿Cómo se llama el sitio?",
+            "text":"¿Como se llama el sitio?",
             "type":"text",
             "options":[""]
         },
         {
             "id":1,
-            "header":"Agregar ubicación",
+            "header":"Agregar ubicacion",
             "text":"¿Dónde está ubicado el lugar?",
             "type":"map",
-            "options":[ 19.701217486389595, -101.19960342230519 ]
+            "options":[ 19.711176736265127, -101.17895698547363 ]
         },
         {
             "id":2,
-            "header":"El Presupuesto pa 🍻",
-            "text":"¿Con qué presupuesto te pusiste chido?",
+            "header":"El Presupuesto pa beber",
+            "text":"¿Con que presupuesto te pusiste chido?",
             "type":"option",
             "options":[ "$50 - $99 MXN","$100 - $199 MXN","$200 - $299 MXN","$300 - $399 MXN","$400 + MXN" ]
         },
         {
             "id":4,
-            "header":"Número de compitas 👨‍👨‍👦‍👦",
-            "text":"¿Con cuántas personas se prendió el ambiente?",
+            "header":"Edad Objetivo",
+            "text":"¿Cual es la edad promedio de clientes?",
             "type":"option",
-            "options":[ "1 - 2 personas","2 - 4 personas","5 - 8 personas","9 - 12 personas","13 + personas" ]
+            "options":[ "18 - 24","22 - 30","25 - 35","30 - 40","Everyone" ]
         },
         {
             "id":5,
             "header":"El mood",
-            "text":"¿Cuál es la actividad principal que se puede hacer en el lugar?... Además de beber😝",
+            "text":"¿Cual es la actividad principal que se puede hacer en el lugar?... Ademas de beber",
             "type":"option",
-            "options":[ "Bailar tranqui", "Platicar","Negocios","Comer","Antro Nasty","Cita Romántica" ]
+            "options":[ "Bailar tranqui", "Platicar","Negocios","Comer","Antro","Cita Romántica" ]
         },
         {
             "id":5,
             "header":"Ambiente Musical",
-            "text":"¿Qué música reina en el lugar (Max 3)? ",
+            "text":"¿Que musica reina en el lugar (Max 3)? ",
             "type":"select",
-            "options":[ "Regional Mexicano","Electrónica","Rock","Alternativo","Perreo","Música de Ambiente","Urbano | HipHop","De todo" ]
+            "options":[ "Regional Mexicano","Electronica","Rock","Alternativo","Perreo","Musica Instrumental","Urbano | HipHop","Pop" ]
         },
         {
             "id":6,
             "header":"Bebida Principal",
-            "text":"¿Cuál es tu veneno en este lugar? ",
+            "text":"¿Cual es tu veneno en este lugar? ",
             "type":"option",
-            "options":[ "Cerveza Comercial","Cerveza Artesanal","Pulque","Mezcal o Tequila","Bacalao Paps😎","Esmirno de Tamarindou®","Bebidas Preparadas","Botellas Finas" ,"Vino"]
+            "options":[ "Cerveza Comercial","Cerveza Artesanal","Pulque","Mezcal o Tequila","Bacalao Paps","Cocteleria","Bebidas Preparadas","Botellas Selectas" ,"Vino"]
         },
         {
             "id":7,
-            "header":"Comida o bajón",
-            "text":"¿Qué hay para comer principalmente?",
+            "header":"Comida o bajon",
+            "text":"¿Que hay para comer principalmente?",
             "type":"option",
             "options":[ "Snacks | Nachos","Hamburguesas y HotDogs","Boneless y Alitas","Comida Mexicana","A la carta","Cortes de carne","Mariscos","Nada" ]
         },
@@ -61,7 +61,7 @@
             "header":"Dresscode",
             "text":"¿Hay requisito de vestimenta?",
             "type":"option",
-            "options":[ "Muy mamón", "Solo decente","No importa" ]
+            "options":[ "Muy elegante", "Casual","Informal" ]
         }
     ]
 }

@@ -17,6 +17,7 @@ import json
 from flask_googlemaps import GoogleMaps, Map
 from keys import GOOGLE_KEY
 
+ADD_QUESTION = "app/static/forms/add.json"
 
 app =  create_app()       #Inits the FLASK app from app capsule 
 app.config['GOOGLEMAPS_KEY'] = GOOGLE_KEY
@@ -78,29 +79,16 @@ def home():                                                              #home m
 
 @app.route('/add',methods = ["GET",'POST'])
 def add():
-    
-    #Create a map
-    map = Map(
-        identifier = "map", varname = "map",style="height:600px;width:600px;margin:0;",
-        # set identifier, varname
-        lat = user_location[0], lng = user_location[1], 
-        # set map base to user_location
-        zoom = 15, # set zoomlevel
-        markers = [
-            {
-                'lat': user_location[0],
-                'lng': user_location[1],
-                'infobox': "Place"
-            }
-        ], 
-        # set markers to location of devices
-        circles = [circle] # pass circles
-    )
+    questions = None
+    with open(ADD_QUESTION,"r") as f:
+        data = json.loads(f.read())
+        questions = data.get("create")
     add_form = AddForm()
     context = {                                   #Dictionary for the HTML part
-        "add_form": add_form,
-        "map": map,
         "key":GOOGLE_KEY,
+        "add_form":add_form,
+        "questions":questions,
+        "responses":[None]*len(questions),
     }
     return render_template('add.html',**context)
 

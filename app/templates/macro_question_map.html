@@ -1,14 +1,14 @@
 {%import 'macro_map_add.html' as map %}
 
-{%macro render_question_map(key)%}
+{%macro render_question_map(key,question)%}
 <div class="content question">
     <div class = "aqua card_container question-card">
         <div class="question--info--container black_linear">
 
-            <h1 class="header-card--aqua">Titulo</h1>
+            <h1 class="header-card--aqua">{{question.get("header")}}</h1>
             <div class="whiteline"></div>
-            <h3 class = "card--desc">¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laoreet eu imperdiet vitae mauris et eu scelerisque semper auctor?</h3>
-            {{map.render_map(key)}}
+            <h3 class = "card--desc">{{question.get("text")}}</h3>
+            {{map.render_map(key,question.get("options"))}}
             <input type="text" class = "text-box--question" id = "inputText">
             <div class='button-bottom'>
                 <input type="submit" class = "aqua-to-solid btn">

@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
-{%import 'macro_question_map.html' as question %}
+{%import 'macro_question_map.html' as question_map %}
+{%import 'macro_question.html' as question_add %}
 {%import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
@@ -7,5 +8,11 @@
         Appistear | +
 {% endblock %}
 {%block content%}
-{{question.render_question_map(key)}}
+        {%for question in questions%}
+                {%if question.get("type") == "map"%}
+                        {{question_map.render_question_map(key, question)}}
+                {%else%}
+                        {{question_add.render_question(question)}}
+                {%endif%}
+        {%endfor%}
 {% endblock %}
