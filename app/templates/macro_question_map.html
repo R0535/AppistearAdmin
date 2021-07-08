@@ -1,19 +1,20 @@
 {%import 'macro_map_add.html' as map %}
 
-{%macro render_question_map(key,question)%}
+{%macro render_question_map(key,question,answers,coords)%}
 <div class="content question">
     <div class = "aqua card_container question-card">
-        <div class="question--info--container black_linear">
+        <form class="question--info--container black_linear" method="post" action="{{url_for('single_add', position = question.get('id'))}}">
 
             <h1 class="header-card--aqua">{{question.get("header")}}</h1>
             <div class="whiteline"></div>
             <h3 class = "card--desc">{{question.get("text")}}</h3>
-            {{map.render_map(key,question.get("options"))}}
-            <input type="text" class = "text-box--question" id = "inputText">
-            <div class='button-bottom'>
-                <input type="submit" class = "aqua-to-solid btn">
-            </div>
-        </div>
+            {{map.render_map(key,coords)}}
+
+                <input type="{{question.get('type')}}" class = "text-box--question"  value="{{answers[question.get('id')]}}" name = "text_answer" id = "inputText">
+                <div class='button-bottom'>
+                    <input type="submit" class = "aqua-to-solid btn">
+                </div>
+        </form>
     </div>
 </div>
 

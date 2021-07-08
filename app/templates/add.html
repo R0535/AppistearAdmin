@@ -1,4 +1,6 @@
 {%extends 'base.html'%}
+{%import 'macro_card.html' as card %}
+
 {%import 'macro_question_map.html' as question_map %}
 {%import 'macro_question.html' as question_add %}
 {%import 'bootstrap/wtf.html' as wtf %}
@@ -9,10 +11,31 @@
 {% endblock %}
 {%block content%}
         {%for question in questions%}
-                {%if question.get("type") == "map"%}
-                        {{question_map.render_question_map(key, question)}}
-                {%else%}
-                        {{question_add.render_question(question)}}
+                {%if question.get("id")==0%}
+                        {{question_add.render_question(question,answers)}}
+                {%endif%}
+                {%if answers[question.get("id")-1]%}
+                        {%if question.get("type") == "map"%}
+                                {{question_map.render_question_map(key, question,answers,coords)}}
+                        {%else%}
+                                {{question_add.render_question(question,answers)}}
+                        {%endif%}
                 {%endif%}
         {%endfor%}
+        {%if None not in answers%}
+        <div class="content question check">
+                {{card.render_card("aqua","Formulario Completo","Revisa tus respuestas para verificar que todo este en orden, si ya esta todo correcto, presiona REGISTRAR ✨.")}}
+        </div>
+        <div class="content question submit">
+                <form method="post" action="{{url_for('add_place')}}">
+                        <input type="submit" value="REGISTRAR" class = "aqua-to-solid btn">
+                </form>
+        </div>
+        {%endif%}
+        <div id="footer" style="height: 50px;"></div>
+        <script>
+                document.getElementById('footer').scrollIntoView();
+                // or
+                document.location.hash = '#' + 'footer';
+        </script>
 {% endblock %}

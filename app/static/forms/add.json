@@ -3,13 +3,13 @@
         {
             "id":0,
             "header":"Agregar Nombre",
-            "text":"¿Como se llama el sitio?",
+            "text":"¿Cómo se llama el sitio?",
             "type":"text",
             "options":[""]
         },
         {
             "id":1,
-            "header":"Agregar ubicacion",
+            "header":"Agregar ubicación",
             "text":"¿Dónde está ubicado el lugar?",
             "type":"map",
             "options":[ 19.711176736265127, -101.17895698547363 ]
@@ -17,51 +17,51 @@
         {
             "id":2,
             "header":"El Presupuesto pa beber",
-            "text":"¿Con que presupuesto te pusiste chido?",
+            "text":"¿Con qué presupuesto te pusiste chido?",
             "type":"option",
-            "options":[ "$50 - $99 MXN","$100 - $199 MXN","$200 - $299 MXN","$300 - $399 MXN","$400 + MXN" ]
+            "options":[ "$50-$99MXN","$100-$199MXN","$200-$299MXN","$300-$399MXN","$400+MXN" ]
+        },
+        {
+            "id":3,
+            "header":"Edad Objetivo",
+            "text":"¿Cuál es la edad promedio de clientes?",
+            "type":"option",
+            "options":[ "18-24","22-30","25-35","30-40","Everyone" ]
         },
         {
             "id":4,
-            "header":"Edad Objetivo",
-            "text":"¿Cual es la edad promedio de clientes?",
-            "type":"option",
-            "options":[ "18 - 24","22 - 30","25 - 35","30 - 40","Everyone" ]
-        },
-        {
-            "id":5,
             "header":"El mood",
-            "text":"¿Cual es la actividad principal que se puede hacer en el lugar?... Ademas de beber",
+            "text":"¿Cuál es la actividad principal que se puede hacer en el lugar?... Además de beber",
             "type":"option",
-            "options":[ "Bailar tranqui", "Platicar","Negocios","Comer","Antro","Cita Romántica" ]
+            "options":[ "BailarTranqui", "Platicar","Negocios","Comer","Antro","CitaRomántica" ]
         },
         {
             "id":5,
             "header":"Ambiente Musical",
-            "text":"¿Que musica reina en el lugar (Max 3)? ",
+            "text":"¿Qué música reina en el lugar? ",
             "type":"select",
-            "options":[ "Regional Mexicano","Electronica","Rock","Alternativo","Perreo","Musica Instrumental","Urbano | HipHop","Pop" ]
+            "options":[ "RegionalMexicano","Electrónica","Rock","Alternativo","Perreo","MúsicaInstrumental","Urbano|HipHop","Pop" ]
         },
         {
             "id":6,
             "header":"Bebida Principal",
-            "text":"¿Cual es tu veneno en este lugar? ",
+            "text":"¿Cuál es tu veneno en este lugar? ",
             "type":"option",
-            "options":[ "Cerveza Comercial","Cerveza Artesanal","Pulque","Mezcal o Tequila","Bacalao Paps","Cocteleria","Bebidas Preparadas","Botellas Selectas" ,"Vino"]
+            "options":[ "CervezaComercial","CervezaArtesanal","Pulque","Mezcal/Tequila","BacalaoPaps","Coctelería","BebidasPreparadas","BotellasSelectas" ,"Vino"]
         },
         {
             "id":7,
-            "header":"Comida o bajon",
-            "text":"¿Que hay para comer principalmente?",
+            "header":"Comida o bajón",
+            "text":"¿Qué hay para comer principalmente?",
             "type":"option",
-            "options":[ "Snacks | Nachos","Hamburguesas y HotDogs","Boneless y Alitas","Comida Mexicana","A la carta","Cortes de carne","Mariscos","Nada" ]
+            "options":[ "Snacks|Nachos","HamburguesasYHotDogs","BonelessYAlitas","Comida Mexicana","ALaCarta","CortesDeCarne","Mariscos","Nada" ]
         },
         {
             "id":8,
             "header":"Dresscode",
             "text":"¿Hay requisito de vestimenta?",
             "type":"option",
-            "options":[ "Muy elegante", "Casual","Informal" ]
+            "options":[ "MuyElegante", "Casual","Informal" ]
         }
     ]
 }

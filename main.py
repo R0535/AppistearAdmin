@@ -14,7 +14,6 @@ from app.firestore_service import get_tasks, get_user, get_proyects,create_alumn
 
 #Google MAPS
 import json
-from flask_googlemaps import GoogleMaps, Map
 from keys import GOOGLE_KEY
 
 ADD_QUESTION = "app/static/forms/add.json"
@@ -22,24 +21,6 @@ ADD_QUESTION = "app/static/forms/add.json"
 app =  create_app()       #Inits the FLASK app from app capsule 
 app.config['GOOGLEMAPS_KEY'] = GOOGLE_KEY
 
-#GOOGLE MAPS INFO
-GoogleMaps(app)
-#Maps Utilities
-user_location = (37,127)
-circle = { # draw circle on map (user_location as center)
-        'stroke_color': '#0000FF',
-        'stroke_opacity': .5,
-        'stroke_weight': 5,
-        # line(stroke) style
-        'fill_color': '#FFFFFF', 
-        'fill_opacity': .2,
-        # fill style
-        'center': { # set circle to user_location
-            'lat': user_location[0],
-            'lng': user_location[1]
-        }, 
-        'radius': 500 # circle size (50 meters)
-    }
 
 @app.cli.command()
 # def test():
@@ -65,33 +46,95 @@ def home():                                                              #home m
     }
     if add_form.validate_on_submit():
         flash("Nueva Cueva")
-        print("AAAAAAAAAAAA")
         return redirect(url_for('add'))
     if search_form.validate_on_submit():
         flash("Nueva Cueva")
-        print("AAAAAAAAAAAA")
         return redirect(url_for('add'))
     if rate_form.validate_on_submit():
         flash("Nueva Cueva")
-        print("AAAAAAAAAAAA")
         return redirect(url_for('add'))
     return render_template('home.html',**context) #returned the response to the client. This time, with the html page
 
+#Function manager to save the drinking places from the owners info
 @app.route('/add',methods = ["GET",'POST'])
 def add():
+    #Render response
+    #reading static file of questions to inject into questions
     questions = None
-    with open(ADD_QUESTION,"r") as f:
+    with open(ADD_QUESTION,"r",encoding='utf-8') as f:
         data = json.loads(f.read())
         questions = data.get("create")
+
+    #single from
     add_form = AddForm()
-    context = {                                   #Dictionary for the HTML part
+
+    #answers to manage responses
+    answers = request.cookies.get("answers")#get from cookies the json
+    if(answers is not None):
+        answers = answers[1:-1]#ignore the []
+        answers = answers.replace(" ", "")#remove whitespace
+        answers = answers.replace('"', '')#remove comillas
+        answers = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo']
+    else:
+        answers = [None]*len(questions)
+    
+    for index in range(len(answers)):
+        if answers[index] == "null":
+            answers[index] = None
+    #Coordinates for Google
+    coords =questions[1].get("options")
+    if(answers[1]):
+        coords = answers[1].split(";")
+
+    context = {#Dictionary for the HTML page
         "key":GOOGLE_KEY,
         "add_form":add_form,
         "questions":questions,
-        "responses":[None]*len(questions),
+        "answers":answers,
+        "coords":coords,
     }
-    return render_template('add.html',**context)
+    resp = make_response(render_template('add.html',**context))
+    resp.set_cookie('answers', json.dumps(answers))#to convert the list to a JSON object
 
+    return resp
+
+
+@app.route('/single_add/answer/<position>',methods = ['POST'])
+def single_add(position):
+    answers = request.cookies.get("answers")#get from cookies the json
+    answers = answers[1:-1]#ignore the []
+    answers = answers.replace(" ", "")#remove whitespace
+    answers = answers.replace('"', '')#remove comillas
+    answers = answers.replace('', '')#remove slice
+    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
+
+    for answer in answers_list:
+        print(answer)
+    
+    position = int(position)#transform the position input to Int
+    answers_list[position] = request.form["text_answer"]#set the value in the indexed position list
+    resp = make_response(redirect(url_for('add')))
+    resp.set_cookie('answers', json.dumps(answers_list))
+    #TODO: send to actual db
+    return resp
+
+@app.route('/add_place/',methods = ['POST'])
+def add_place():
+    answers = request.cookies.get("answers")#get from cookies the json
+    answers = answers[1:-1]#ignore the []
+    answers = answers.replace(" ", "")#remove whitespace
+    answers = answers.replace('"', '')#remove comillas
+    answers = answers.replace('', '')#remove slice
+    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
+
+    coords = answers_list[1]#save the coords separatedly
+    coords = coords.replace(";",",")#make it easier to save coords location in Cloud
+    for answer in answers_list:
+        print(answer)
+    resp = make_response(redirect(url_for('add')))
+    resp.set_cookie('answers', json.dumps(answers_list))
+    #TODO: send to actual db
+    return resp
 
 @app.route('/tasks/delete/<task_id>',methods = ['POST'])
 def delete(task_id):

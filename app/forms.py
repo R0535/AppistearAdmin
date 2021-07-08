@@ -28,9 +28,9 @@ class InitialRateForm(FlaskForm):
 
 #New place
 class AddForm(FlaskForm):
-    name = StringField("¿Cómo se llama el lugar?", validators=[DataRequired()])
+    text = StringField("", validators=[DataRequired()])
     
-    submit = SubmitField('Compartir Con el Mundo')
+    submit = SubmitField('Siguiente')
 
 class UpdateTaskForm(FlaskForm):
     submit = SubmitField('Entregar')

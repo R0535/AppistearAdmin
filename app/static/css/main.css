@@ -9,7 +9,7 @@ body{
 html{
     font-size: 62.5%;
     font-family:sans-serif;
-    
+    scroll-behavior: smooth;
 }
 nav{
     font-size:1.6rem
@@ -71,7 +71,7 @@ nav{
 .question--info--container{
     position: relative;
     border-radius: 56px;
-    height:auto;
+    height:-webkit-fill-available;
     padding-top: 3rem;
 }
 /*Utilities*/
@@ -101,6 +101,13 @@ nav{
 @font-face {
     font-family: LoraRegular;
     src: url('../fonts/lora/Lora-Regular.ttf') ;
+}
+
+select{
+    letter-spacing: 2px!important;
+}
+option{
+    letter-spacing: 2px!important;
 }
 .header-golden{
     text-align: center;
@@ -174,10 +181,21 @@ nav{
     width:90%;
     margin: 5% 5% 50px 5%;
 }
+label.text-box--question{
+    margin: .5rem 5% .5rem 5%
+}
+select.text-box--question{
+    background-color: #00000049;
+    border-radius: 12px;
+    padding: 5px;
+    color: whitesmoke;
+    width:90%;
+    margin: 5% 5% 50px 5%;
+}
 .map{
     width:96%;
-    height:400px;
-    margin:40px 2% 40px 2%;
+    height:280px;
+    margin:5px 2%;
 }
 /*Overwrite bootstrap*/
 div.horizontal{
@@ -190,9 +208,19 @@ div.horizontal{
 div.question{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(90%,35rem), 1fr));
+    grid-auto-rows: 60rem;
     height:fit-content;
     grid-gap: 5.6rem;
     text-align: start; 
     justify-items: center;
+    margin: 4rem 0;
 }
+div.check{
+    text-align: center; 
+    margin: 0 10%;
+}
+div.submit{
+    grid-auto-rows: 20rem;
+}
+
 
