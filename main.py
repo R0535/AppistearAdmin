@@ -18,7 +18,8 @@ from keys import GOOGLE_KEY
 
 #Query and Sort
 from app.utilities.query import sort_places
-
+#Data
+from datetime import datetime
 ADD_QUESTION = "app/static/forms/add.json"
 SEARCH_QUESTION = "app/static/forms/search.json"
 RATE_QUESTION = "app/static/forms/rate.json"
@@ -74,23 +75,22 @@ def add():
     add_form = AddForm()
 
     #answers to manage responses
-    answers = request.cookies.get("answers")#get from cookies the json
-    if(answers is not None):
-        answers = answers[1:-1]#ignore the []
-        answers = answers.replace(" ", "")#remove whitespace
-        answers = answers.replace('"', '')#remove comillas
-        answers = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo']
-    else:
+    answers = session.get("answers")#get from cookies the json
+    if(answers is None):
         answers = [None]*len(questions)
-    
-    for index in range(len(answers)):
-        if answers[index] == "null":
-            answers[index] = None
-    #Coordinates for Google
-    coords =questions[1].get("options")
-    if(answers[1]):
-        coords = answers[1].split(";")
 
+    coords = questions[1].get("options")
+    if(answers[1]):
+        coords = answers[1].get("value")
+
+    list2 = []
+    for answer in answers:
+        if answer:
+            answer = answer.get("value")
+            list2.append(answer)
+        else:
+            list2.append(None)
+    answers = list2
     context = {#Dictionary for the HTML page
         "key":GOOGLE_KEY,
         "add_form":add_form,
@@ -99,7 +99,6 @@ def add():
         "coords":coords,
     }
     resp = make_response(render_template('add.html',**context))
-    resp.set_cookie('answers', json.dumps(answers))#to convert the list to a JSON object
 
     return resp
 
@@ -117,18 +116,18 @@ def search():
     search_form = SearchForm()
 
     #answers to manage responses
-    answers = request.cookies.get("answers")#get from cookies the json
-    if(answers is not None):
-        answers = answers[1:-1]#ignore the []
-        answers = answers.replace(" ", "")#remove whitespace
-        answers = answers.replace('"', '')#remove comillas
-        answers = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo']
-    else:
-        answers = [None]*len(questions)
+    answers = session.get("answers")#get from cookies the json
+    if(answers is None):
+                answers = [None]*len(questions)
     
-    for index in range(len(answers)):
-        if answers[index] == "null":
-            answers[index] = None
+    list2 = []
+    for answer in answers:
+        if answer:
+            answer = answer.get("value")
+            list2.append(answer)
+        else:
+            list2.append(None)
+    answers = list2
 
     context = {#Dictionary for the HTML page
         "key":GOOGLE_KEY,
@@ -137,8 +136,6 @@ def search():
         "answers":answers,
     }
     resp = make_response(render_template('search.html',**context))
-    resp.set_cookie('answers', json.dumps(answers))#to convert the list to a JSON object
-
     return resp
 
 #Function manager to save the drinking places from the owners info
@@ -184,91 +181,70 @@ def rate():
 
     return resp
 
-@app.route('/single_add/answer/<position>',methods = ['POST'])
-def single_add(position):
-    answers = request.cookies.get("answers")#get from cookies the json
-    answers = answers[1:-1]#ignore the []
-    answers = answers.replace(" ", "")#remove whitespace
-    answers = answers.replace('"', '')#remove comillas
-    answers = answers.replace('', '')#remove slice
-    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
-
-    for answer in answers_list:
-        print(answer)
-    
+@app.route('/single_add/answer/<position>/<len>',methods = ['POST'])
+def single_add(position,len):
     position = int(position)#transform the position input to Int
-    answers_list[position] = request.form["text_answer"]#set the value in the indexed position list
+    _len = int(len)
+    answers = session.get("answers")#get from cookies the json
+    if not answers:
+        answers = [None]*(_len)
+
+    answers[position] = {"value":request.form["text_answer"]}#set the value in the indexed position list
     resp = make_response(redirect(url_for('add')))
-    resp.set_cookie('answers', json.dumps(answers_list))
-    #TODO: send to actual db
+    session["answers"] =  answers
     return resp
 
-@app.route('/single_search/answer/<position>',methods = ['POST'])
-def single_search(position):
-    answers = request.cookies.get("answers")#get from cookies the json
-    answers = answers[1:-1]#ignore the []
-    answers = answers.replace(" ", "")#remove whitespace
-    answers = answers.replace('"', '')#remove comillas
-    answers = answers.replace('', '')#remove slice
-    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
-
-    for answer in answers_list:
-        print(answer)
-    
+@app.route('/single_search/answer//<position>/<len>',methods = ['POST'])
+def single_search(position,len):
+    _len = int(len)
     position = int(position)#transform the position input to Int
-    answers_list[position] = request.form["text_answer"]#set the value in the indexed position list
+    answers = session.get("answers")#get from cookies the json
+    if not answers:
+        answers = [None]*(_len)
+
+    answers[position] = {"value":request.form["text_answer"]}#set the value in the indexed position list
     resp = make_response(redirect(url_for('search')))
-    resp.set_cookie('answers', json.dumps(answers_list))
+    session["answers"] =  answers
     #TODO: send to actual db
     return resp
 
 @app.route('/add_place/',methods = ['POST'])
 def add_place():
-    answers = request.cookies.get("answers")#get from cookies the json
-    answers = answers[1:-1]#ignore the []
-    answers = answers.replace(" ", "")#remove whitespace
-    answers = answers.replace('"', '')#remove comillas
-    answers = answers.replace('', '')#remove slice
-    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
-
-    coords = answers_list[1]#save the coords separatedly
-    coords = coords.replace(";",",")#make it easier to save coords location in Cloud
+    answers = session["answers"]#get from cookies the json
+    
+    coords = answers[1].get("value")#save the coords separatedly
 
     place = {
-        "name" : answers_list[0],
+        "name" : answers[0].get("value"),
         "coords": coords,
-        "money": answers_list[2],
-        "age":answers_list[3],
-        "mood": answers_list[4],
-        "music":answers_list[5],
-        "drink":answers_list[6],
-        "food":answers_list[7],
-        "dress":answers_list[8],
+        "money": answers[2].get("value"),
+        "age":answers[3].get("value"),
+        "mood": answers[4].get("value"),
+        "music":answers[5].get("value"),
+        "drink":answers[6].get("value"),
+        "food":answers[7].get("value"),
+        "dress":answers[8].get("value"),
     }
 
     create_place(place)
     resp = make_response(redirect(url_for('done')))
-    resp.delete_cookie('answers')
+    session["answers"] = [None]*len(answers)
     return resp
 
 @app.route('/search_place/',methods = ['POST'])
 def search_place():
-    answers = request.cookies.get("answers")#get from cookies the json
-    answers = answers[1:-1]#ignore the []
-    answers = answers.replace(" ", "")#remove whitespace
-    answers = answers.replace('"', '')#remove comillas
-    answers = answers.replace('', '')#remove slice
-    answers_list = answers.split(",")#split by (,) Output: ['foo','foo','foo','foo','foo','foo'] 
-
+    answers = session["answers"]#get from cookies the json
+    
     place_from_answer = {
-        "contact" : answers_list[0],
-        "money": answers_list[1],
-        "age":answers_list[2],
-        "mood": answers_list[3],
-        "music":answers_list[4],
-        "drink":answers_list[5],
-        "food":answers_list[6],
-        "dress":answers_list[7],
+        "contact" : answers[0].get("value"),
+        "money": answers[1].get("value"),
+        "age":answers[2].get("value"),
+        "mood": answers[3].get("value"),
+        "music":answers[4].get("value"),
+        "drink":answers[5].get("value"),
+        "food":answers[6].get("value"),
+        "dress":answers[7].get("value"),
+        "date": datetime.now(),
     }
 
     create_search(place_from_answer)
@@ -283,13 +259,23 @@ def done():
 @app.route('/result')
 def result():
     place_from_answer = session["place_from_answer"]
-    answer = request.cookies.get('answers')
+    answer = session["answers"]#get from cookies the json
+    places = sort_places(place_from_answer)
+    keys = []
+    for place in places:
+        print(place)
+        for key in place:
+            keys.append(key)
+        print(keys,"AAAAAAAAA")
+
     context = {
         "answer":answer,
-        "palces":sort_places(place_from_answer),
+        "places":places,
+        "keys":keys,
     }
     resp = make_response(render_template('result.html',**context))
-    resp.delete_cookie('answers')
+    #session["answers"] = [None]*len(answer)
+
     return resp
 
 @app.route('/tasks/delete/<task_id>',methods = ['POST'])

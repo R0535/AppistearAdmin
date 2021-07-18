@@ -11,7 +11,7 @@ const myLatLng = { lat: parseFloat("{{coords[0]}}"), lng: parseFloat("{{coords[1
 function render_position(){
   marker_lat = marker.position.lat()
   marker_lng = marker.position.lng()
-  text.value = marker_lat+";"+marker_lng
+  text.value = [marker_lat,marker_lng]
 }
 console.log(myLatLng)
 var mapProp= {

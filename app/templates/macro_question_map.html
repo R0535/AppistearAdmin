@@ -3,7 +3,7 @@
 {%macro render_question_map(key,question,answers,coords)%}
 <div class="content question">
     <div class = "aqua card_container question-card">
-        <form class="question--info--container black_linear" method="post" action="{{url_for('single_add', position = question.get('id'))}}">
+        <form class="question--info--container black_linear" method="post" action="{{url_for('single_add', position = question.get('id'),len = answers|length)}}">
 
             <h1 class="header-card--aqua">{{question.get("header")}}</h1>
             <div class="whiteline"></div>

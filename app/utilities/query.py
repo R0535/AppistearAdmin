@@ -30,6 +30,6 @@ def sort_places(answer):
     c = Counter(places_result)
     first_three = c.most_common(3)
     for item in first_three:
-        result_list.append(item[0]) #the first item of the tuple ([place], counter)
+        result_list.append(item[0].to_dict()) #the first item of the tuple ([place], counter)
 
     return result_list
