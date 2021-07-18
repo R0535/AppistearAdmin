@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%import 'macro_card.html' as card %}
+{%import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+        {{super()}}
+        Appistear | +
+{% endblock %}
+{%block content%}
+    <h1>
+        {{answer}}
+    </h1>
+{%endblock%}

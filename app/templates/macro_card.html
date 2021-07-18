@@ -1,5 +1,5 @@
 {%import 'bootstrap/wtf.html' as wtf %}
-{%macro render_card(main_color,header,desc,form = None)%}
+{%macro render_card(main_color,header,desc,path,form = None)%}
 <div class = '{{main_color}} card_container'>
         <img src="{{url_for('static',filename='images/default.jpg')}}" class = "card--image">
         <div class="grayline"></div>
@@ -9,7 +9,7 @@
             <p class='card--desc'>                {{desc}}            </p>
             {%if form != None%}
             <div class='button-bottom'>
-                <form method="post" action="{{url_for('add')}}">
+                <form method="post" action="{{url_for(path)}}">
                     {{ form.csrf_token }}<!--automathic-->
                     {{form.submit(class = main_color+"-to-solid btn")}}
                 </form>

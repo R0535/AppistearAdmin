@@ -32,5 +32,16 @@ class AddForm(FlaskForm):
     
     submit = SubmitField('Siguiente')
 
+class SearchForm(FlaskForm):
+    text = StringField("", validators=[DataRequired()])
+    
+    submit = SubmitField('Siguiente')
+
+class RateForm(FlaskForm):
+    text = StringField("", validators=[DataRequired()])
+    
+    submit = SubmitField('Siguiente')
+
+
 class UpdateTaskForm(FlaskForm):
     submit = SubmitField('Entregar')

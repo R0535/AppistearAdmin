@@ -12,10 +12,16 @@ def get_users():
 def get_user(user_id):
     return db.collection('users').document(user_id).get()
 
-def create_user(user_data):
-    user_ref = db.collection('users').document()
-    user_ref.set({'password': user_data.password,'username': user_data.username})
-    return user_ref.id
+def create_place(place_data):
+    user_ref = db.collection('places').document()
+    user_ref.set(place_data)
+
+def create_search(place_data):
+    user_ref = db.collection('search').document()
+    user_ref.set(place_data)
+
+def get_places():
+    return db.collection("places").stream()
 
 def get_proyects(user_id):
     return db.collection('users').document(user_id).collection("projects").get()

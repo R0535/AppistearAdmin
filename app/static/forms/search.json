@@ -1,0 +1,68 @@
+{
+    "search":[
+        {
+            "id":0,
+            "name":"contact",
+            "header":"Numero de Contacto",
+            "text":"¿Cuál es tu número de teléfono? Lo usaremos para mandar tu código de promoción y para que puedas evaluar nuestro servicio.",
+            "type":"text",
+            "options":[""]
+        },        
+        {
+            "id":1,
+            "name":"money",
+            "header":"El Presupuesto pa beber",
+            "text":"¿Qué presupuesto tienes para tu salida hoy? El presupuesto es por persona",
+            "type":"option",
+            "options":[ "$50 - $99MXN","$100 - $199MXN","$200 - $299MXN","$300 - $399MXN","$400 + MXN" ]
+        },
+        {
+            "id":2,
+            "name":"age",
+            "header":"Edad",
+            "text":"¿Cuál es tu edad?",
+            "type":"option",
+            "options":[ "18 - 24","22 - 30","25 - 35","30 - 40","Everyone" ]
+        },
+        {
+            "id":3,
+            "name":"mood",
+            "header":"El mood",
+            "text":"¿Qué mood tienes para hacer hoy?... Además de beber",
+            "type":"option",
+            "options":[ "Bailar Tranqui", "Platicar","Negocios","Comer","Antro","Cita Romántica" ]
+        },
+        {
+            "id":4,
+            "name":"music",
+            "header":"Ambiente Musical",
+            "text":"¿Qué música quieres escuchar? ",
+            "type":"option",
+            "options":["Regional Mexicano","Electrónica","Rock","Alternativo","Perreo","Música Instrumental","Urbano | HipHop","Pop"]
+        },
+        {
+            "id":5,
+            "name":"drink",
+            "header":"Bebida Principal",
+            "text":"Elige tu veneno",
+            "type":"option",
+            "options":[ "Cervezan Comercial","Cerveza Artesanal","Pulque","Mezcal/Tequila","Bacalao Paps","Coctelería","Bebidas Preparadas","Botellas Selectas" ,"Vino"]
+        },
+        {
+            "id":6,
+            "name":"food",
+            "header":"Comida o bajón",
+            "text":"¿Qué se te antoja comer?",
+            "type":"option",
+            "options":[ "Snacks | Nachos","Hamburguesas Y HotDogs","Boneless Y Alitas","Comida Mexicana","Pizza","A La Carta","Cortes De Carne","Mariscos","Nada" ]
+        },
+        {
+            "id":7,
+            "name":"dress",
+            "header":"Dresscode",
+            "text":"¿Buscas un lugar free o algo formal?",
+            "type":"option",
+            "options":[ "MuyE legante", "Casual","Informal" ]
+        }
+    ]
+}

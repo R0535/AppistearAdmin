@@ -87,6 +87,10 @@ nav{
     height:.25rem;
     margin-top:.1rem
 }
+.middle--done{
+    text-align: center!important;
+    padding: 3rem;
+}
 /*Fonts*/
 @font-face {
     font-family: PoppinsLightItalic;

@@ -1,7 +1,7 @@
 from app.models import UserData, UserModel
 from flask.templating import render_template
 from . import  auth
-from app.firestore_service import get_user, create_user
+from app.firestore_service import get_user
 from flask import  render_template,flash,session,url_for,request
 from werkzeug.utils import redirect
 from werkzeug.security import generate_password_hash

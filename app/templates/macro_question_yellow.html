@@ -1,0 +1,30 @@
+{%macro render_question(question,answers)%}
+<div class="content question">
+    <div class = "aqua card_container question-card">
+        <form class="question--info--container black_linear" method="post" action="{{url_for('single_add', position = question.get('id'))}}">
+            <h1 class="header-card--aqua">{{question.get("header")}}</h1>
+            <div class="whiteline"></div>
+            <h3 class = "card--desc">{{question.get("text")}}</h3>
+                {%if question.get("type") == "text"%}
+                    <input type="text" class = "text-box--question" value="{{answers[question.get('id')]}}" name = "text_answer">
+                {%elif question.get("type") == "option"%}
+                    <select name = "text_answer" class = "text-box--question" value="{{answers[question.get('id')]}}">
+                        {%for option in question.get("options")%}
+                            <option value="{{option}}" {% if option==answers[question.get("id")] %} selected {% endif %}>{{option}}</option>
+                        {%endfor%}
+                    </select>
+                {%elif question.get("type") == "select"%}
+                    <select name = "text_answer" class = "text-box--question" value="{{answers[question.get('id')]}}" multiple>
+                        {%for option in question.get("options")%}
+                            <option value="{{option}}" {% if option==answers[question.get("id")] %} selected {% endif %}>{{option}}</option>
+                        {%endfor%}
+                    </select>
+                {%endif%}
+                <div class='button-bottom'>
+                    <input type="submit" class = "aqua-to-solid btn">
+                </div>
+        </form>
+    </div>
+</div>
+
+{%endmacro%}

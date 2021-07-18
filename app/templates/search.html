@@ -2,7 +2,7 @@
 {%import 'macro_card.html' as card %}
 
 {%import 'macro_question_map.html' as question_map %}
-{%import 'macro_question_aqua.html' as question_add %}
+{%import 'macro_question_red.html' as question_add %}
 {%import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
@@ -15,29 +15,22 @@
                         {{question_add.render_question(question,answers)}}
                 {%endif%}
                 {%if answers[question.get("id")-1] and not answers[question.get("id")]%}
-                        {%if question.get("type") == "map"%}
-                                {{question_map.render_question_map(key, question,answers,coords)}}
-                        {%else%}
                                 {{question_add.render_question(question,answers)}}
-                        {%endif%}
                 {%endif%}
         {%endfor%}
         {%if None not in answers%}
 
-        {%for question in questions%}
-                {%if question.get("type") == "map"%}
-                        {{question_map.render_question_map(key, question,answers,coords)}}
-                {%else%}
+                {%for question in questions%}
                         {{question_add.render_question(question,answers)}}
-                {%endif%}
-        {%endfor%}
+
+                {%endfor%}
 
         <div class="content question check">
-                {{card.render_card("aqua","Formulario Completo","Revisa tus respuestas para verificar que todo este en orden, si ya esta todo correcto, presiona REGISTRAR ✨.")}}
+                {{card.render_card("red","Formulario Completo","Revisa tus respuestas para verificar que todo este en orden, si ya esta todo correcto, presiona BUSCAR ✨.")}}
         </div>
         <div class="content question submit">
-                <form method="post" action="{{url_for('add_place')}}">
-                        <input type="submit" value="REGISTRAR" class = "aqua-to-solid btn">
+                <form method="post" action="{{url_for('search_place')}}">
+                        <input type="submit" value="BUSCAR" class = "red-to-solid btn">
                 </form>
         </div>
         {%endif%}
