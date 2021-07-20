@@ -44,7 +44,7 @@ def home():                                                              #home m
     add_form = InitialAddForm()
     search_form = InitialSearchForm()
     rate_form = InitialRateForm()
-
+    session["answers"] = None
     context = {                                   #Dictionary for the HTML part
         "add_form": add_form,
         "search_form": search_form,
@@ -78,9 +78,9 @@ def add():
     answers = session.get("answers")#get from cookies the json
     if(answers is None):
         answers = [None]*len(questions)
-
     coords = questions[1].get("options")
-    if(answers[1]):
+    print(coords)
+    if(answers[1] != None):
         coords = answers[1].get("value")
 
     list2 = []
@@ -118,7 +118,7 @@ def search():
     #answers to manage responses
     answers = session.get("answers")#get from cookies the json
     if(answers is None):
-                answers = [None]*len(questions)
+        answers = [None]*len(questions)
     
     list2 = []
     for answer in answers:
@@ -266,7 +266,6 @@ def result():
         print(place)
         for key in place:
             keys.append(key)
-        print(keys,"AAAAAAAAA")
 
     context = {
         "answer":answer,
@@ -275,6 +274,19 @@ def result():
     }
     resp = make_response(render_template('result.html',**context))
     #session["answers"] = [None]*len(answer)
+    '''
+    {
+        'music': 'Pop',
+         'name': 'ghjghjghj',
+          'age': 'Everyone',
+           'mood': 'Cita Romántica',
+            'coords': '19.706894203696336, -101.1809310913086',
+             'money': '$800 + MXN',
+              'food': 'Nada',
+               'dress': 'Informal',
+                'drink': 'Vino'
+                }
+    '''
 
     return resp
 

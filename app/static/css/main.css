@@ -14,7 +14,10 @@ html{
 nav{
     font-size:1.6rem
 }
-
+pre{
+    background-color: transparent;
+    border: transparent;
+}
 /*Colors*/
 .black_linear{
 	background: linear-gradient(173deg, #000000 8%,rgba(255, 255, 255, 0) 70%);

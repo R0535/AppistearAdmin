@@ -4,15 +4,35 @@
 
 {% block title %}
         {{super()}}
-        Appistear | +
+        Appistear | Result
 {% endblock %}
 {%block content%}
-    <h1>
-        {{answer}}
-    </h1>
-    {%for place in places%}
-        {%for key in keys%}
-            <h2>{{place[key]}}</h2>
-        {%endfor%}
-    {%endfor%}
-{%endblock%}
+    {{super()}}
+    <div class="container">
+        <h1 class = "header-golden" >¡APPISTEAR!</h1>
+        <div class = "horizontal">
+            {{card.render_card("aqua",places[0]['name'], "{}<br>{}<br>{}<br>{}".format(places[0]['mood'], places[0]['music'], places[0]['money'],places[0]['drink']),"add")}}
+            {{card.render_card("red",places[0]['name'],"{}\n\t{}\n\t{}\n\t{}".format(places[1]['mood'], places[1]['music'], places[1]['money'],places[1]['drink']) ,"search")}}
+            {{card.render_card("yellow",places[2]['name'],"{}\n\t{}\n\t{}\n\t{}".format(places[2]['mood'], places[2]['music'], places[2]['money'],places[2]['drink']) ,"rate")}}
+            <p>AAAAAAAAAAAAA<Br>bbbbbbbbbbbbbbbbb</p>
+        </div>
+    </div>
+{% endblock %}
+<!-- {
+        'music': 'Pop',
+        'name': 'ghjghjghj',
+        'age': 'Everyone',
+        'mood': 'Cita Romántica',
+        'coords': '19.706894203696336, -101.1809310913086',
+        'money': '$800 + MXN',
+        'food': 'Nada',
+        'dress': 'Informal',
+        'drink': 'Vino'
+
+
+        places[0]['mood']
+        places[0]['music']
+        places[0]['money']
+            {{card.render_card("yellow",places[2]['name'],"{}\n\t{}\n\t{}\n\t{}".format(places[2]['mood'], places[2]['music'], places[2]['money'],places[2]['drink']) ,"rate")}}
+
+                } -->
